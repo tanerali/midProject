@@ -1,0 +1,9 @@
+AirBNB - like EE application
+
+1.Registration
+2.Login
+3.Post a new place
+4.Search a place
+5.Save a place
+6.User can mark a place favourite
+7.Places with description
