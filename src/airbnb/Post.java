@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import airbnb.users.Comment;;
 
-public class Post {
+public class Post implements ICommentable{
 	public enum Type {
 		HOSTEL, HOTEL, APARTMENT, COTTAGE
 	}

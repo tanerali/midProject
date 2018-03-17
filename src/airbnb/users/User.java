@@ -1,21 +1,16 @@
 package airbnb.users;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
+import airbnb.DBManager;
+import airbnb.ICommentable;
 import airbnb.Post;
 
-public class User {
-    public class Coupon {
-        private String code;
-        private LocalDate expirationDate;
-        private double creditAmount;
-        private String restrictions;
-    }
-    public class Badge {
-
-    }
-
+public class User implements ICommentable{
 	private int userID;
     private String email;
     private String password;
@@ -30,27 +25,47 @@ public class User {
 	private String description;
     private LocalDate birthDate;
     private String telNumber;
-    private String preferredLanguage;
-    private String preferredCurrency;
-    private List<Coupon> coupons;
-    private double giftCardBalance;
     private AccountSettings accountSettings;
-    private List<Badge> badges;
-    private List<Comment> reviewsGiven;
-    private List<Message> messages;
-    private List<Notification> notifications;
-    private List<String> connectedApps;
+    private List<Comment> reviewsGiven = new ArrayList<>();
+    private List<Message> messages = new ArrayList<>();
+    private Map<String, List<Post>> listsCreated = new TreeMap<>();
 
+    private DBManager dbmanager;
 
+	public User(DBManager dbmanager) {
+		this.dbmanager = dbmanager;
+	}
+	
+	public DBManager getDbmanager() {
+		return dbmanager;
+	}
 
-    public void book(Post listing){}
+	public boolean book(Post post){
+    		return dbmanager.changeToBooked(post);
+    }
 
-    public void sharePost(Post listing){}
+    public void sharePost(Post post, String emailAddress){
+    		//TODO
+    		//sendViaEmail(post, emailAddress);
+    }
 
-    public void saveToList(Post listing){}
+    public void saveToList(String listName, Post post){
+    		if (listsCreated.get(listName) == null) {
+    			listsCreated.put(listName, new ArrayList<Post>());
+    		}
+    		listsCreated.get(listName).add(post);
+    }
 
-    public void createNewList(){}
-
-    public void sendMessage(String messageBody){}
+    public void sendMessage(String messageBody, User user){
+    		//TODO
+    		dbmanager.sendMessage(messageBody, user);
+    }
+    
+    public void leaveComment(Comment comment, Post post) {
+    		//user can only leave comments for places that he has been in
+    		if (dbmanager.userAllowedToComment()) {
+    			dbmanager.addComment(comment, post);
+    		}
+    }
 
 }

@@ -3,7 +3,6 @@ package airbnb.users;
 import java.time.LocalDate;
 
 public class Comment {
-
 	private int commentID;
 	private int postID;
 	private int userID;

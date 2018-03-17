@@ -1,33 +1,35 @@
 package airbnb.users;
 
+import airbnb.DBManager;
 import airbnb.Transaction;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class AccountSettings {
-    enum NotificationMethod {
-        EMAIL, PUSH, TEXTMSG
-    }
-    enum NotificationSubject {
-        MESSAGE, REMINDERS, PROMOTIONSTIPS, POLICYANDCOMMUNITY, ACCOUNTSUPPORT
-    }
-    enum PaymentMethod {
+    private List<Transaction> transactionHistory = new ArrayList<>();
+    private List<LocalDateTime> loginHistory = new ArrayList<>();
 
-    }
-    enum PrivacyPreference {
-        SOCIAL, SEARCHENGINES
-    }
-
-
-
-    private Map<NotificationSubject, List<NotificationMethod>> notificationSettings;
-    private List<PaymentMethod> paymentMethods;
-    private List<PaymentMethod> payoutPreferences;
-    private List<Transaction> transactionHistory;
-    private Map<PrivacyPreference, Boolean> privacyPreferences;
-    private List<LocalDate> loginHistory;
-
-    public void cancelAccount(){}
+    private DBManager dbmanager;
+    
+    public AccountSettings(DBManager dbmanager) {
+		this.dbmanager = dbmanager;
+	}
+	
+	public void addNewTransactionRecord(Transaction transaction) {
+		transactionHistory.add(transaction);
+	}
+	
+	public void addNewLoginRecord(LocalDateTime loginTime) {
+		loginHistory.add(loginTime);
+	}
+	
+	public void cancelAccount(User user){
+		if (dbmanager.findAccount(user) != null) {
+			dbmanager.removeAccount(user);    			
+		}
+	}
 }

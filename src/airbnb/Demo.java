@@ -1,5 +1,6 @@
 package airbnb;
 
+import airbnb.users.Host;
 import airbnb.users.User;
 
 public class Demo {
@@ -15,10 +16,6 @@ public class Demo {
     //return help page
     public void helpPage(){}
 
-    public void searchListing(){}
-
-    public void subscribeToNewsletter(){}
-
-    public void changeDisplayedCurrency(){}
+    public void searchPost(){}
 
 }
