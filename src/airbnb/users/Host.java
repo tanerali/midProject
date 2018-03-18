@@ -3,28 +3,24 @@ package airbnb.users;
 import java.util.ArrayList;
 import java.util.List;
 
-import airbnb.DBManager;
 import airbnb.Post;
 
 //extends user because host is also a user, but has posts
-public class Host extends User{
-    private List<Post> hostedPosts = new ArrayList<>();
-    
-    public Host(DBManager dbmanager) {
-		super(dbmanager);
+public class Host extends User {
+
+	private List<Post> hostedPosts;
+
+	public Host(int userID, String email, String password, String account) {
+		super(userID, email, password, account);
+		this.setHostedPosts(new ArrayList<>());
 	}
 
-	public void postNew(Post post){
-    		getDbmanager().addPost(post);
-    		hostedPosts.add(post);
-    }
+	public List<Post> getHostedPosts() {
+		return hostedPosts;
+	}
 
-    public boolean deletePost(Post post){
-    		if (getDbmanager().findPost(post) != null) {
-    			getDbmanager().removePost(post);
-        		hostedPosts.remove(post);
-        		return true;
-    		}
-    		return false;
-    }
+	public void setHostedPosts(List<Post> hostedPosts) {
+		this.hostedPosts = hostedPosts;
+	}
+
 }
