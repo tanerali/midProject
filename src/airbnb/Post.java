@@ -2,6 +2,8 @@ package airbnb;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -18,31 +20,29 @@ public class Post implements ICommentable {
 	private String title;
 	private Type typeOfPlace;
 	private LocalDate dateOfUpload;
+	private double price;
 	private String description;
 	private Set<String> gallery; // every element holds a path to an image
 	private Set<Integer> likes;
-	private ArrayList<Comment> comments;
+	private List<Comment> comments;
 
-	public Post(int postID, int userID, Set<String> gallery, String title, Type typeOfPlace, LocalDate dateOfUpload) {
-
+	public Post(int postID, int userID, String title, Type typeOfPlace, LocalDate dateOfUpload, 
+			double price, String description, Set<String> gallery, 
+			Set<Integer> likes, List<Comment> comments) {
 		this.postID = postID;
 		this.userID = userID;
-		this.gallery = gallery;
 		this.title = title;
 		this.typeOfPlace = typeOfPlace;
 		this.dateOfUpload = dateOfUpload;
-
-		this.likes = new TreeSet<>();
-		this.comments = new ArrayList<>();
-
+		this.price = price;
+		this.description = description;
+		this.gallery = gallery;
+		this.likes = likes;
+		this.comments = comments;
 	}
 
-	public void checkAvailability() {
-
-	}
-
-	public void calculateCost() {
-
+	public void checkAvailability(LocalDate dateOfStay, int periodDays) {
+		//check in db whether booked for those dates
 	}
 
 	public int getPostID() {
@@ -84,6 +84,14 @@ public class Post implements ICommentable {
 	public void setDateOfUpload(LocalDate dateOfUpload) {
 		this.dateOfUpload = dateOfUpload;
 	}
+	
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
 
 	public String getDescription() {
 		return description;
@@ -94,7 +102,7 @@ public class Post implements ICommentable {
 	}
 
 	public Set<String> getGallery() {
-		return gallery;
+		return Collections.unmodifiableSet(gallery);
 	}
 
 	public void setGallery(Set<String> gallery) {
@@ -102,15 +110,15 @@ public class Post implements ICommentable {
 	}
 
 	public Set<Integer> getLikes() {
-		return likes;
+		return Collections.unmodifiableSet(likes);
 	}
 
 	public void setLikes(Set<Integer> likes) {
 		this.likes = likes;
 	}
 
-	public ArrayList<Comment> getComments() {
-		return comments;
+	public List<Comment> getComments() {
+		return Collections.unmodifiableList(comments);
 	}
 
 	public void setComments(ArrayList<Comment> comments) {

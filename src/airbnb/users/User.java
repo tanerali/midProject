@@ -2,10 +2,12 @@ package airbnb.users;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import airbnb.Demo;
 import airbnb.ICommentable;
 import airbnb.Post;
 
@@ -34,6 +36,39 @@ public class User implements ICommentable {
 		this.password = password;
 		this.userID = userID;
 		this.username = account;
+	}
+
+
+	public boolean book(Post post){
+		if (Demo.postsAndCommentsInDB.get(post) != null) {
+			//book()
+			return true;
+		}
+		return false;
+	}
+
+	public void sharePost(Post post, String emailAddress){
+		//TODO
+		//sendViaEmail(post, emailAddress);
+	}
+
+	public void saveToList(String listName, Post post){
+		if (listsCreated.get(listName) == null) {
+			listsCreated.put(listName, new ArrayList<Post>());
+		}
+		listsCreated.get(listName).add(post);
+	}
+
+	public void sendMessage(String messageBody, User user){
+		//TODO
+		//sendMessage(messageBody, user);
+	}
+
+	public void leaveComment(Comment comment, Post post) {
+		//user can only leave comments for places that he has been in
+		//if (userHasVisitedPlace()) {
+		Demo.postsAndCommentsInDB.get(post).add(comment);
+		//}
 	}
 
 	public int getUserID() {
@@ -149,7 +184,7 @@ public class User implements ICommentable {
 	}
 
 	public List<Comment> getReviewsGiven() {
-		return reviewsGiven;
+		return Collections.unmodifiableList(reviewsGiven);
 	}
 
 	public void setReviewsGiven(List<Comment> reviewsGiven) {
@@ -157,7 +192,7 @@ public class User implements ICommentable {
 	}
 
 	public List<Message> getMessages() {
-		return messages;
+		return Collections.unmodifiableList(messages);
 	}
 
 	public void setMessages(List<Message> messages) {
@@ -165,7 +200,7 @@ public class User implements ICommentable {
 	}
 
 	public Map<String, List<Post>> getListsCreated() {
-		return listsCreated;
+		return Collections.unmodifiableMap(listsCreated);
 	}
 
 	public void setListsCreated(Map<String, List<Post>> listsCreated) {

@@ -10,7 +10,6 @@ public class Message {
 	private String message;
 
 	public Message(User fromUser, User toUser, String message) {
-		super();
 		this.fromUser = fromUser;
 		this.toUser = toUser;
 		this.message = message;
