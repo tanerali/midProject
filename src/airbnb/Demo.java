@@ -14,6 +14,5 @@ public class Demo {
 	public static Map<User, List<Comment>> usersAndCommentsInDB = new TreeMap<>();
 	
 	public static void main(String[] args) {
-		
 	}
 }
