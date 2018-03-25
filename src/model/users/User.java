@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import Demo;
+import controller.Demo;
 import model.Comment;
 import model.ICommentable;
 import model.Message;

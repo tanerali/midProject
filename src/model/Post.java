@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;;
+import java.util.TreeSet;
 
 public class Post implements ICommentable {
 
@@ -24,9 +24,8 @@ public class Post implements ICommentable {
 	private Set<Integer> likes;
 	private List<Comment> comments;
 
-	public Post(int postID, int userID, String title, Type typeOfPlace, LocalDate dateOfUpload, 
-			double price, String description, Set<String> gallery, 
-			Set<Integer> likes, List<Comment> comments) {
+	public Post(int postID, int userID, String title, Type typeOfPlace, LocalDate dateOfUpload, double price,
+			String description, Set<String> gallery, Set<Integer> likes, List<Comment> comments) {
 		this.postID = postID;
 		this.userID = userID;
 		this.title = title;
@@ -40,7 +39,7 @@ public class Post implements ICommentable {
 	}
 
 	public void checkAvailability(LocalDate dateOfStay, int periodDays) {
-		//check in db whether booked for those dates
+		// check in db whether booked for those dates
 	}
 
 	public int getPostID() {
@@ -82,7 +81,7 @@ public class Post implements ICommentable {
 	public void setDateOfUpload(LocalDate dateOfUpload) {
 		this.dateOfUpload = dateOfUpload;
 	}
-	
+
 	public double getPrice() {
 		return price;
 	}

@@ -2,8 +2,7 @@ package manager;
 
 import java.util.ArrayList;
 import java.util.Map;
-
-import model.dao.UserDao;
+import dao.UserDao;
 import model.users.User;
 
 //Singleton manager class 

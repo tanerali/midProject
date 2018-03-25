@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import Demo;
+import controller.Demo;
 import model.Post;
 
 //extends user because host is also a user, but has posts

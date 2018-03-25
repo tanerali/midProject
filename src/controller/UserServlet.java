@@ -46,9 +46,9 @@ public class UserServlet extends HttpServlet {
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String email = request.getParameter("email");
-		String userName = request.getParameter("userName");
-        String password = request.getParameter("password");
+		String email = req.getParameter("email");
+		String userName = req.getParameter("userName");
+        String password = req.getParameter("password");
         
         userManager.editUserDetails(email, userName, password);
 	}
