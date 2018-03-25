@@ -1,11 +1,11 @@
-package airbnb.users;
+package model.users;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import airbnb.Demo;
-import airbnb.Post;
+import Demo;
+import model.Post;
 
 //extends user because host is also a user, but has posts
 public class Host extends User {

@@ -1,4 +1,4 @@
-package airbnb;
+package model;
 
 public interface ICommentable {
 

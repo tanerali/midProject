@@ -1,13 +1,11 @@
-package airbnb;
+package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
-
-import airbnb.users.Comment;;
+import java.util.TreeSet;;
 
 public class Post implements ICommentable {
 

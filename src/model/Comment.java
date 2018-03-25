@@ -1,4 +1,4 @@
-package airbnb.users;
+package model;
 
 import java.time.LocalDate;
 

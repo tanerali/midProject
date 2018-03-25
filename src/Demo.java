@@ -1,11 +1,12 @@
-package airbnb;
+
 
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import airbnb.users.Comment;
-import airbnb.users.User;
+import model.Comment;
+import model.Post;
+import model.users.User;
 
 public class Demo {
 

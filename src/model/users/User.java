@@ -1,4 +1,4 @@
-package airbnb.users;
+package model.users;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import airbnb.Demo;
-import airbnb.ICommentable;
-import airbnb.Post;
+import Demo;
+import model.Comment;
+import model.ICommentable;
+import model.Message;
+import model.Post;
 
 public class User implements ICommentable {
 	private int userID;

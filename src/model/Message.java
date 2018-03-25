@@ -1,6 +1,8 @@
-package airbnb.users;
+package model;
 
 import java.time.LocalDateTime;
+
+import model.users.User;
 
 public class Message {
 
