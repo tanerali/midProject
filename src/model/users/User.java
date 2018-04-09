@@ -40,39 +40,6 @@ public class User implements ICommentable {
 		this.username = account;
 	}
 
-
-	public boolean book(Post post){
-		if (Demo.postsAndCommentsInDB.get(post) != null) {
-			//book()
-			return true;
-		}
-		return false;
-	}
-
-	public void sharePost(Post post, String emailAddress){
-		//TODO
-		//sendViaEmail(post, emailAddress);
-	}
-
-	public void saveToList(String listName, Post post){
-		if (listsCreated.get(listName) == null) {
-			listsCreated.put(listName, new ArrayList<Post>());
-		}
-		listsCreated.get(listName).add(post);
-	}
-
-	public void sendMessage(String messageBody, User user){
-		//TODO
-		//sendMessage(messageBody, user);
-	}
-
-	public void leaveComment(Comment comment, Post post) {
-		//user can only leave comments for places that he has been in
-		//if (userHasVisitedPlace()) {
-		Demo.postsAndCommentsInDB.get(post).add(comment);
-		//}
-	}
-
 	public int getUserID() {
 		return userID;
 	}
