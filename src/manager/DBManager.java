@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.mysql.jdbc.Driver;
+
 public class DBManager {
 
 	private static DBManager instance;
@@ -14,6 +16,7 @@ public class DBManager {
     private static final String DB_USER = "root";
     private static final String DB_PASS = "123123";
     private static final String URL = "jdbc:mysql://"+DB_IP+":"+DB_PORT+"/"+DB_NAME;
+
 	private Connection conn;
 
 	private DBManager() {

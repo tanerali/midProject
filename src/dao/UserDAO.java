@@ -1,19 +1,22 @@
 package dao;
 
-import exceptions.UserUnauthorizedException;
-import manager.DBManager;
-import model.users.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import exceptions.UserUnauthorizedException;
+import manager.DBManager;
+import model.users.User;
+
 public class UserDAO {
 	private static UserDAO instance;
 	private Connection connection = DBManager.getInstance().getConnection();
+
+	//private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
 	private UserDAO() {
 	}
@@ -69,7 +72,7 @@ public class UserDAO {
 			String lastName, int age, String gender, String city,
 			String country, String photo, String description,
 			LocalDate birthDate, String telNumber) throws SQLException {
-		// TODO Auto-generated method stub
+		
 		String sqlQuery = "INSERT INTO USERS (first_name, last_name, email, user, password, " +
 				"age, gender, city, country, photo, description, birth_date, " +
 				"telephone_number) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";

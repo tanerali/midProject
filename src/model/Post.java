@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
-public class Post implements ICommentable {
+public class Post implements ICommentable, Comparable<Post> {
 
 	public enum Type {
 		HOSTEL, HOTEL, APARTMENT, COTTAGE
@@ -24,18 +23,34 @@ public class Post implements ICommentable {
 	private Set<Integer> likes;
 	private List<Comment> comments;
 
-	public Post(int postID, int userID, String title, Type typeOfPlace, LocalDate dateOfUpload, double price,
-			String description, Set<String> gallery, Set<Integer> likes, List<Comment> comments) {
+	public Post(int postID, int userID, String title, String typeOfPlace, LocalDate dateOfUpload, double price,
+			String description) {
 		this.postID = postID;
 		this.userID = userID;
 		this.title = title;
-		this.typeOfPlace = typeOfPlace;
+		this.setTypeOfPlace(typeOfPlace);
 		this.dateOfUpload = dateOfUpload;
 		this.price = price;
 		this.description = description;
 		this.gallery = gallery;
 		this.likes = likes;
 		this.comments = comments;
+	}
+
+	private void setTypeOfPlace(String typeOfPlace2) {
+		if (typeOfPlace2.equals(Type.APARTMENT.toString())) {
+			this.setTypeOfPlace(Type.APARTMENT);
+
+		} else if (typeOfPlace2.equals(Type.HOSTEL.toString())) {
+			this.setTypeOfPlace(Type.HOSTEL);
+
+		} else if (typeOfPlace2.equals(Type.HOTEL.toString())) {
+			this.setTypeOfPlace(Type.HOTEL);
+
+		} else if (typeOfPlace2.equals(Type.COTTAGE.toString())) {
+			this.setTypeOfPlace(Type.COTTAGE);
+
+		}
 	}
 
 	public void checkAvailability(LocalDate dateOfStay, int periodDays) {
@@ -120,6 +135,11 @@ public class Post implements ICommentable {
 
 	public void setComments(ArrayList<Comment> comments) {
 		this.comments = comments;
+	}
+
+	@Override
+	public int compareTo(Post o) {
+		return this.dateOfUpload.compareTo(o.getDateOfUpload());
 	}
 
 }
