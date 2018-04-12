@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,10 +21,12 @@ public class PostServlet extends HttpServlet {
 		String title = request.getParameter("title");
 		String description = request.getParameter("description");
 		String price = request.getParameter("price");
-		System.out.println(title+" "+description+" "+price);
+		System.out.println(title + " " + description + " " + price);
 		PostDAO dao = PostDAO.getInstance();
 		try {
-			dao.postPlace("HOTEL", title, 10, 1,LocalDate.now(), description);
+			dao.postPlace("HOTEL", title, 10, 1, LocalDate.now(), description);
+			RequestDispatcher view = request.getRequestDispatcher("HostPage.html");
+			view.forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

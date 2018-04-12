@@ -1,11 +1,13 @@
 package manager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 
+import dao.PostDAO;
 import model.Post;
 import model.Post.Type;
 
@@ -35,8 +37,7 @@ public class PostManager {
 		postByID = new ConcurrentHashMap<>();
 		visitedPlaces = new ConcurrentHashMap<>();
 		allTypesOfPlaces = new ConcurrentHashMap<>();
-		
-		
+
 	}
 
 	public static PostManager getInstance() {
@@ -46,5 +47,9 @@ public class PostManager {
 			}
 		}
 		return PostManager.instance;
+	}
+
+	public ArrayList<Post> getAllPosts() {
+		return PostDAO.getInstance().getAllPosts();
 	}
 }

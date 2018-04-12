@@ -1,14 +1,13 @@
 package dao;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.TreeSet;
+import java.util.ArrayList;
 
 import manager.DBManager;
 import model.Post;
@@ -16,11 +15,11 @@ import model.Post;
 public class PostDAO {
 	private static PostDAO instance;
 	private Connection connection = DBManager.getInstance().getConnection();
-	
+
 	private static final String INSERT_POST = "INSERT INTO POSTS(type, title, price, host_id, date_of_posting, description,gallery_photos) VALUES (?,?,?,?,?,?,?);";
 	private static final String SELECT_NUMBER_OF_PLACES_BY_TYPE = "";
 	private static final String SELECT_ALL_PLACES = "SELECT * FROM POSTS;";
-
+	private static int gallery_photosID = 4; // DELETE LATER !
 	private static Connection con = DBManager.getInstance().getConnection();
 
 	private PostDAO() {
@@ -43,7 +42,7 @@ public class PostDAO {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	public void postPlace(String type, String title, int price, int host_id, LocalDate date_of_posting,
 			String description) throws SQLException {
 		PreparedStatement st = con.prepareStatement(INSERT_POST);
@@ -53,12 +52,12 @@ public class PostDAO {
 		st.setInt(4, 1);
 		st.setDate(5, Date.valueOf(LocalDate.now()));
 		st.setString(6, description);
-		st.setInt(7,1);
+		st.setInt(7, ++gallery_photosID);
 		st.executeUpdate();
 	}
 
-	public TreeSet<Post> getAllPosts() {
-		TreeSet<Post> posts = new TreeSet<>();
+	public ArrayList<Post> getAllPosts() {
+		ArrayList<Post> posts = new ArrayList<>();
 		try {
 			Statement st = DBManager.getInstance().getConnection().createStatement();
 			ResultSet resultSet = st.executeQuery(SELECT_ALL_PLACES);
