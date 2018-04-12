@@ -8,21 +8,32 @@ public class DBManager {
 
 	private static DBManager instance;
 	// Gotta be included later
-	private static final String JDBC_DRIVER = "";
-	private static final String DB_URL = "";
-	private static final String USERNAME = "";
-	private static final String PASSWORD = ""; // this changes
+	private static final String DB_IP = "localhost";
+    private static final String DB_PORT = "3306";
+    private static final String DB_NAME = "airbnb";
+    private static final String DB_USER = "root";
+    private static final String DB_PASS = "123123";
+    private static final String URL = "jdbc:mysql://"+DB_IP+":"+DB_PORT+"/"+DB_NAME;
 	private Connection conn;
 
 	private DBManager() {
+		//load driver
 		try {
-			Class.forName(DBManager.JDBC_DRIVER);
-			this.conn = DriverManager.getConnection(DBManager.DB_URL, DBManager.USERNAME, DBManager.PASSWORD);
-		} catch (ClassNotFoundException e) {
-			System.out.println("Unable to load database driver: " + e.getMessage());
-		} catch (SQLException e) {
-			System.out.println("Unable to connect to database: " + e.getMessage());
-		}
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Sorry, Driver not loaded or does not exist! Aborting.");
+            return;
+        }
+        System.out.println("Driver loaded");
+        //create connection
+        try {
+            conn = DriverManager.getConnection
+                    (URL, DB_USER, DB_PASS);
+
+        } catch (SQLException e) {
+            System.out.println("Sorry, connection failed. Maybe wrong credentials?");
+            System.out.println(e.getMessage());
+        }
 	}
 
 	public static DBManager getInstance() {

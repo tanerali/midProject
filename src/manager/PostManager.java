@@ -18,5 +18,5 @@ public class PostManager {
 	// userID -> Liked Posts
 	private static Map<Integer,Set<Post>> likedPosts;
 	// type of place -> number of places
-	private static Map<Type,Integer> 
+//	private static Map<Type,Integer> 
 }
