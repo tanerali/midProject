@@ -7,19 +7,21 @@ public class Comment {
 	private int commentID;
 	private int postID;
 	private int userID;
-	private String content;
-	private LocalDate date;
 	private String username;
-
-	public Comment(int commentID, int postID, int userID, String content, LocalDate date, String username) {
+	private String content;
+	
+	public Comment(String username, String content) {
+		this.username = username;
+		this.content = content;
+	}
+	
+	public Comment(int commentID, int postID, int userID, String username, String content) {
+		this(username, content);
 		this.commentID = commentID;
 		this.postID = postID;
 		this.userID = userID;
-		this.content = content;
-		this.date = date;
-		this.username = username;
 	}
-
+	
 	public int getCommentID() {
 		return commentID;
 	}
@@ -50,14 +52,6 @@ public class Comment {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public LocalDate getDate() {
-		return date;
-	}
-
-	public void setDate(LocalDate date) {
-		this.date = date;
 	}
 
 	public String getUsername() {

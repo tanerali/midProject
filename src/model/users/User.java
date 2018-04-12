@@ -1,5 +1,6 @@
 package model.users;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,17 +15,19 @@ import model.Message;
 import model.Post;
 
 public class User implements ICommentable {
+	//first_name, last_name, email, user, password, " +
+	//"age, gender, city, country, photo, description, birth_date, " +
+	//"telephone_number
 	private int userID;
-	private String email;
-	private String password;
-	private String username;
 	private String firstName;
 	private String lastName;
+	private String email;
+	private String username;
+	private String password;
 	private int age;
 	private String gender;
 	private String city;
 	private String country;
-	// photo
 	private String photo;
 	private String description;
 	private LocalDate birthDate;
@@ -38,6 +41,25 @@ public class User implements ICommentable {
 		this.password = password;
 		this.userID = userID;
 		this.username = account;
+	}
+	
+	public User(int userID, String firstName, String lastName, String email, String username, String password, int age,
+			String gender, String city, String country, String photo, String description, LocalDate birthDate,
+			String telNumber) {
+		this.userID = userID;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.age = age;
+		this.gender = gender;
+		this.city = city;
+		this.country = country;
+		this.photo = photo;
+		this.description = description;
+		this.birthDate = birthDate;
+		this.telNumber = telNumber;
 	}
 
 	public int getUserID() {

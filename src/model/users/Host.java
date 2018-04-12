@@ -17,12 +17,12 @@ public class Host extends User {
 		this.setHostedPosts(new ArrayList<>());
 	}
 
-	public void postNew(Post post){
+	public void postNew(Post post) {
 		Demo.postsAndCommentsInDB.put(post, new ArrayList<>());
 		hostedPosts.add(post);
 	}
 
-	public boolean deletePost(Post post){
+	public boolean deletePost(Post post) {
 		if (Demo.postsAndCommentsInDB.get(post) != null) {
 			Demo.postsAndCommentsInDB.remove(post);
 			hostedPosts.remove(post);
@@ -30,7 +30,6 @@ public class Host extends User {
 		}
 		return false;
 	}
-
 
 	public List<Post> getHostedPosts() {
 		return Collections.unmodifiableList(hostedPosts);
